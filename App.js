@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 
-const App = () =>{
+const App = () => {
   const [inputValues, setInputValues] = useState({
     input1: '',
 
@@ -10,44 +10,52 @@ const App = () =>{
 
   const [soma, setSoma] = useState(0);
 
-  const handleInputChange = (inputName, value) =>{
-    setInputValues({...inputValues, [inputName]: value});
+  const handleInputChange = (inputName, value) => {
+    setInputValues({ ...inputValues, [inputName]: value });
   };
-    const handleSoma = () => {
-      const { input1 } = inputValues; 
+  const handleSoma = () => {
+    const { input1, input2 } = inputValues;
 
-      const result = parseInt(intput1);
+    const result = parseInt(input1) + parseInt(input2);
 
-      setSoma(result);
-    };
+    setSoma(result);
+  };
 
-    return(
-      <View style={styles.container}>
-        <Text style={styles.label}>Primeiro Número:</Text>
-        <TextInput
+  return (
+    <View style={styles.container}>
+      <Text style={styles.label}>Primeiro Número:</Text>
+      <TextInput
         style={styles.input}
         onChangeText={(value) => handleInputChange('input1', value)}
         value={inputValues.input1}
         keyboardType='numeric'
-        />
+      />
 
-        <Button title='Somar' onPress={handleSoma}/>
+      <Text style={styles.label}>Segundo Número:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(value) => handleInputChange('input2', value)}
+        value={inputValues.input2}
+        keyboardType='numeric'
+      />
 
-        <Text>Resultado:{soma}</Text>
-      </View>
-    );
+      <Button title='Somar' onPress={handleSoma} />
+
+      <Text>Resultado:{soma}</Text>
+    </View>
+  );
 
 };
-      
-    const styles = StyleSheet.create({ 
-      container:{
-        flex: 1,
-        backgroundColor: '#E0F2F1',
-        padding: 20,
 
-      },
-    });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#E0F2F1',
+    padding: 20,
+
+  },
+});
 
 
-    export default App;
+export default App;
 
